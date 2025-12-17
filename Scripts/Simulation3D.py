@@ -170,6 +170,15 @@ class Simulation3D():
         self.previous_path = os.getcwd()
         self.new_path      = os.path.join( self.previous_path, self.folder_name)
         
+        # 1. Ottieni il percorso assoluto della directory padre ("..")
+        parent_dir = os.path.abspath(os.path.join(self.previous_path, os.pardir))
+        
+        # 2. Definisci la cartella contenitore "NewSimulations"
+        container_dir = os.path.join(parent_dir, 'NewSimulations')
+        
+        # 3. Il nuovo percorso sarà: ../NewSimulations/Dynamic_Simulation_index
+        self.new_path = os.path.join(container_dir, self.folder_name)
+        
         os.makedirs( self.new_path, 
                      exist_ok = True )
         
